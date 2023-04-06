@@ -26,8 +26,11 @@ const playerObj = document.querySelectorAll('.player');
 
 const diceImageArray = document.querySelectorAll('.dice');
 
+const diceImage = document.querySelector('.dice');
+
 // console.log(playerObj[0].classList.contains('player--active'));
 
+diceImage.classList.add('hidden');
 player1CurrentObject.textContent = 0;
 player2CurrentObject.textContent = 0;
 
@@ -38,13 +41,13 @@ player2TotalObject.textContent = 0;
 
 // };
 
-const displayDice = function (a) {
-  diceImageArray[a - 1].classList.remove('hidden');
-};
+// const displayDice = function (a) {
+//   diceImageArray[a - 1].classList.remove('hidden');
+// };
 
-const removeDisplayyDice = function (a) {
-  diceImageArray[a - 1].classList.add('hidden');
-};
+// const removeDisplayyDice = function (a) {
+//   diceImageArray[a - 1].classList.add('hidden');
+// };
 
 const switchPlayer = function () {
   if (playerObj[0].classList.contains('player--active')) {
@@ -78,11 +81,11 @@ newGame.addEventListener('click', function () {
     playerObj[0].classList.add('player--active');
   }
 
-  for (let i = 0; i < diceImageArray.length; i++) {
-    if (!diceImageArray[i].classList.contains('hidden')) {
-      diceImageArray[i].classList.add('hidden');
-    }
-  }
+  // for (let i = 0; i < diceImageArray.length; i++) {
+  //   if (!diceImageArray[i].classList.contains('hidden')) {
+  //     diceImageArray[i].classList.add('hidden');
+  //   }
+  // }
 });
 
 holdBtn.addEventListener('click', function () {
@@ -91,6 +94,7 @@ holdBtn.addEventListener('click', function () {
     player1TotalObject.textContent = totalScorePlayer1;
     currentScorePlayer1 = 0;
     player1CurrentObject.textContent = currentScorePlayer1;
+    diceImage.classList.add('hidden');
 
     // check winner
     if (totalScorePlayer1 >= 100) {
@@ -99,6 +103,9 @@ holdBtn.addEventListener('click', function () {
       holdBtn.disabled = true;
       totalScorePlayer1 = 0;
       currentScorePlayer1 = 0;
+      totalScorePlayer2 = 0;
+      currentScorePlayer2 = 0;
+      diceImage.classList.add('hidden');
     }
 
     // switch
@@ -109,6 +116,7 @@ holdBtn.addEventListener('click', function () {
     player2TotalObject.textContent = totalScorePlayer2;
     currentScorePlayer2 = 0;
     player2CurrentObject.textContent = currentScorePlayer2;
+    diceImage.classList.add('hidden');
 
     // check winner
     if (totalScorePlayer2 >= 100) {
@@ -117,6 +125,9 @@ holdBtn.addEventListener('click', function () {
       holdBtn.disabled = true;
       totalScorePlayer2 = 0;
       currentScorePlayer2 = 0;
+      totalScorePlayer1 = 0;
+      currentScorePlayer1 = 0;
+      diceImage.classList.add('hidden');
     }
 
     playerObj[1].classList.remove('player--active');
@@ -126,7 +137,7 @@ holdBtn.addEventListener('click', function () {
   // switchPlayer();
 });
 
-let dice;
+// let dice;
 let currentScorePlayer1 = 0;
 
 let totalScorePlayer1 = 0;
@@ -136,8 +147,12 @@ let currentScorePlayer2 = 0;
 let totalScorePlayer2 = 0;
 
 rollDiceBtn.addEventListener('click', function () {
-  dice = randomNumber();
-  displayDice(dice);
+  // dice = randomNumber();
+  // displayDice(dice);
+  const dice = Math.trunc(Math.random() * 6) + 1;
+
+  diceImage.classList.remove('hidden');
+  diceImage.src = `images/dice-${dice}.png`;
   if (playerObj[0].classList.contains('player--active')) {
     if (dice !== 1) {
       currentScorePlayer1 += dice;
@@ -175,5 +190,6 @@ rollDiceBtn.addEventListener('click', function () {
       switchPlayer();
     }
   }
-  removeDisplayyDice(a);
+  // diceImage.classList.add('.hidden');
+  // removeDisplayyDice(a);
 });
