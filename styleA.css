@@ -85,6 +85,7 @@ main {
   width: 65%;
   padding: 2rem;
   transition: all 0.75s;
+  text-align: center;
 }
 
 .current-label {
@@ -163,4 +164,8 @@ main {
 .player--winner .name {
   font-weight: 700;
   color: #c7365f;
+}
+
+.hidden {
+  display: none;
 }

@@ -81,6 +81,9 @@ newGame.addEventListener('click', function () {
     playerObj[0].classList.add('player--active');
   }
 
+  playerObj[0].classList.remove('player--winner');
+  playerObj[1].classList.remove('player--winner');
+
   // for (let i = 0; i < diceImageArray.length; i++) {
   //   if (!diceImageArray[i].classList.contains('hidden')) {
   //     diceImageArray[i].classList.add('hidden');
@@ -98,7 +101,8 @@ holdBtn.addEventListener('click', function () {
 
     // check winner
     if (totalScorePlayer1 >= 100) {
-      rollDiceBtn.textContent = 'Player 1 Wins';
+      rollDiceBtn.textContent = '🎉 Player 1 Wins';
+      playerObj[0].classList.add('player--winner');
       rollDiceBtn.disabled = true;
       holdBtn.disabled = true;
       totalScorePlayer1 = 0;
@@ -120,7 +124,8 @@ holdBtn.addEventListener('click', function () {
 
     // check winner
     if (totalScorePlayer2 >= 100) {
-      rollDiceBtn.textContent = 'Player 2 Wins';
+      rollDiceBtn.textContent = '🎉 Player 2 Wins';
+      playerObj[1].classList.add('player--winner');
       rollDiceBtn.disabled = true;
       holdBtn.disabled = true;
       totalScorePlayer2 = 0;
